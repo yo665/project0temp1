@@ -1,0 +1,708 @@
+{% extends "base.html" %} 
+{% load static %}
+
+{% block content %}
+
+<!-- Section -->
+<section class="section1">
+    <div class="section1-container">
+        <div class="section1-rating-container">
+            <img src="{% static 'img/icons8-google-144.png' %}" alt="Google">
+            <img src="{% static 'img/uifaces-popular-image (1).jpg' %}" alt="User">
+            <img src="{% static 'img/uifaces-popular-image (2).jpg' %}" alt="User">
+            <img src="{% static 'img/uifaces-popular-image.jpg' %}" alt="User">
+            <span class="section1-stars">★★★★★</span>
+            <span>4.7/5 (17k+ Reviews)</span>
+        </div>
+        <div class="section1-heading">India's <span class="section1-highlight">Top Rated</span> Professional Services Platform</div>
+        <p class="section1-subheading">Connecting you with experts to simplify your legal, tax & compliance.</p>
+        <div class="section1-search-container">
+            <div class="section1-search-box">
+                <input type="text" id="serviceSearch" placeholder="Try 'FSSAI Registration'">
+                <button id="searchButton"><i class="fa fa-search"></i></button>
+            </div>
+            <div id="searchResults" class="search-results-box"></div>
+        </div>
+        <div class="section1-buttons">
+            {% for service in popular_services %}
+            <a href="/services/{{ service.slug }}/" class="section1-btn">{{ service.heading }}</a>
+            {% endfor %}
+        </div>
+    </div>
+    <style>
+        .section1-search-container {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .search-results-box {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            color: black;
+            border: 1px solid #ddd;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            z-index: 100;
+            display: none;
+        }
+        
+        .search-result-item {
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .search-result-item:hover {
+            background: #f5f5f5;
+        }
+        
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+        
+        .search-result-name {
+            font-weight: 600;
+        }
+        
+        .search-result-desc {
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+    
+    <script>
+    $(document).ready(function() {
+        const searchInput = $('#serviceSearch');
+        const searchResults = $('#searchResults');
+        let typingTimer;
+        const doneTypingInterval = 300; // milliseconds
+        
+        // Handle search input
+        searchInput.on('keyup', function() {
+            clearTimeout(typingTimer);
+            typingTimer = setTimeout(performSearch, doneTypingInterval);
+        });
+        
+        // Handle search button click
+        $('#searchButton').click(function() {
+            performSearch();
+        });
+        
+        function performSearch() {
+            const query = searchInput.val().trim();
+            if (query.length > 1) { // Only search if at least 2 characters
+                $.get('/search-services/', {query: query}, function(data) {
+                    if (data.results.length > 0) {
+                        let resultsHtml = '';
+                        data.results.forEach(function(service) {
+                            resultsHtml += `
+                                <div class="search-result-item" data-url="${service.url}">
+                                    <div class="search-result-name">${service.name}</div>
+                                    <div class="search-result-desc">${service.form_name}</div>
+                                </div>
+                            `;
+                        });
+                        searchResults.html(resultsHtml).show();
+                    } else {
+                        searchResults.html('<div class="search-result-item">No services found</div>').show();
+                    }
+                });
+            } else {
+                searchResults.hide();
+            }
+        }
+        
+        // Handle click on search result
+        $(document).on('click', '.search-result-item', function() {
+            window.location.href = $(this).data('url');
+        });
+        
+        // Hide results when clicking elsewhere
+        $(document).click(function(e) {
+            if (!$(e.target).closest('.section1-search-container').length) {
+                searchResults.hide();
+            }
+        });
+    });
+    </script>
+</section>
+<!-- End Section -->
+
+<!-- Slider Area -->
+<section class="slider">
+    <div class="hero-slider">
+        <!-- Start Single Slider -->
+        <div class="single-slider" style="background-image:url('{% static "img/slider.png" %}')">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="text">
+                            <h1>Your Trusted Partner for <span>Finance</span> & <span>GST Services!</span></h1>
+                            <p>We simplify taxation, compliance, and financial management, ensuring smooth business operations with expert guidance.</p>
+                            <div class="button">
+                                <a href="#" class="btn">Get Started</a>
+                                <a href="#" class="btn primary">Our Services</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Single Slider -->
+        <!-- Start Single Slider -->
+        <div class="single-slider" style="background-image:url('{% static "img/slider2.png" %}')">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="text">
+                            <h1>Hassle-Free <span>GST Registration</span> & <span>Tax Filing</span></h1>
+                            <p>We provide seamless GST registration, return filing, and tax compliance support to help your business stay ahead.</p>
+                            <div class="button">
+                                <a href="#" class="btn">Register Now</a>
+                                <a href="#" class="btn primary">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Start End Slider -->
+        <!-- Start Single Slider -->
+        <div class="single-slider" style="background-image:url('{% static "img/slider3.png" %}')">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="text">
+                            <h1>Expert Solutions for <span>Business Compliance</span></h1>
+                            <p>From company incorporation to annual filings, we ensure your business stays compliant with ease and accuracy.</p>
+                            <div class="button">
+                                <a href="#" class="btn">Start Now</a>
+                                <a href="#" class="btn primary">Contact Us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Single Slider -->
+    </div>
+</section>
+<!--/ End Slider Area -->
+
+<!-- Start Schedule Area -->
+<section class="schedule">
+    <div class="container">
+        <div class="schedule-inner">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="single-schedule card">
+                        <div class="card-header">
+                            <h4>File GST</h4>
+                            <p>Starting from <strong>₹1,999/-</strong></p>
+                        </div>
+                        <div class="card-body">
+                            <img src="img/gst-files.png" alt="GST Files" class="card-icon">
+                            <ul>
+                                <li><a href="{% url 'services_page' 'gst-registration' %}">GST Registration</a></li>
+                                <li><a href="#">GST Filing</a></li>
+                                <li><a href="#">ARN Tracking</a></li>
+                                <li><a href="#">GST Compliance Guidance</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="single-schedule card">
+                        <div class="card-header">
+                            <h4>Company Registration</h4>
+                            <p>Start your business legally</p>
+                        </div>
+                        <div class="card-body">
+                            <img src="img/company-icon.png" alt="Company" class="card-icon">
+                            <ul>
+                                <li><a href="#">Private Limited Company</a></li>
+                                <li><a href="#">LLP Registration</a></li>
+                                <li><a href="#">Partnership Firm</a></li>
+                                <li><a href="#">Sole Proprietorship</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="single-schedule card">
+                        <div class="card-header">
+                            <h4>Accounting & Compliance</h4>
+                            <p>Expert support for your business</p>
+                        </div>
+                        <div class="card-body">
+                            <img src="img/accounting-icon.png" alt="Accounting" class="card-icon">
+                            <ul>
+                                <li><a href="#">Bookkeeping & Taxation</a></li>
+                                <li><a href="#">Trademark Registration</a></li>
+                                <li><a href="#">Annual Filings</a></li>
+                                <li><a href="#">Legal Advisory</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>		
+
+<!--/End Start schedule Area -->
+
+<!-- Start Features -->
+<section class="features section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <h2>We Are Always Ready to Assist You with Your Financial Needs</h2>
+                    <img src="{% static 'img/section-img.png' %}" alt="#">
+                    <p>Expert guidance in finance, taxation, and compliance to ensure your business thrives.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-12">
+                <!-- Start Single Feature -->
+                <div class="single-features">
+                    <div class="single-icon">
+                        <i class="icofont icofont-chart-histogram"></i>
+                    </div>
+                    <h3>Tax & GST Consultation</h3>
+                    <p>Get expert advice on GST filings, tax planning, and compliance management.</p>
+                </div>
+                <!-- End Single Feature -->
+            </div>
+            <div class="col-lg-4 col-12">
+                <!-- Start Single Feature -->
+                <div class="single-features">
+                    <div class="single-icon">
+                        <i class="icofont icofont-bank"></i>
+                    </div>
+                    <h3>Financial Advisory</h3>
+                    <p>Optimize your financial strategies with our professional financial planning services.</p>
+                </div>
+                <!-- End Single Feature -->
+            </div>
+            <div class="col-lg-4 col-12">
+                <!-- Start Single Feature -->
+                <div class="single-features last">
+                    <div class="single-icon">
+                        <i class="icofont icofont-document-folder"></i>
+                    </div>
+                    <h3>Business Compliance</h3>
+                    <p>Ensure your business meets all legal and financial compliance requirements.</p>
+                </div>
+                <!-- End Single Feature -->
+            </div>
+        </div>				
+    </div>
+</section>
+<!--/ End Features -->
+
+<!-- Start Fun-facts -->
+<div id="fun-facts" class="fun-facts section overlay">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-12">
+                <!-- Start Single Fun -->
+                <div class="single-fun">
+                    <i class="icofont icofont-calculator-alt-1"></i>
+                    <div class="content">
+                        <span class="counter">12000</span>
+                        <p>Successful Tax Filings</p>
+                    </div>
+                </div>
+                <!-- End Single Fun -->
+            </div>
+            <div class="col-lg-3 col-md-6 col-12">
+                <!-- Start Single Fun -->
+                <div class="single-fun">
+                    <i class="icofont icofont-money"></i>
+                    <div class="content">
+                        <span class="counter">250</span>
+                        <p>Businesses Assisted</p>
+                    </div>
+                </div>
+                <!-- End Single Fun -->
+            </div>
+            <div class="col-lg-3 col-md-6 col-12">
+                <!-- Start Single Fun -->
+                <div class="single-fun">
+                    <i class="icofont icofont-law-document"></i>
+                    <div class="content">
+                        <span class="counter">4500</span>
+                        <p>Compliance Cases Handled</p>
+                    </div>
+                </div>
+                <!-- End Single Fun -->
+            </div>
+            <div class="col-lg-3 col-md-6 col-12">
+                <!-- Start Single Fun -->
+                <div class="single-fun">
+                    <i class="icofont icofont-business-man"></i>
+                    <div class="content">
+                        <span class="counter">15</span>
+                        <p>Years of Experience</p>
+                    </div>
+                </div>
+                <!-- End Single Fun -->
+            </div>
+        </div>
+    </div>
+</div>		
+<!--/ End Fun-facts -->
+
+<!-- Start Why Choose Us -->
+<section class="why-choose section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <h2>We Offer Comprehensive Financial Solutions</h2>
+                    <img src="{% static 'img/section-img.png' %}" alt="#">
+                    <p>We help businesses and individuals manage their finances efficiently with expert tax, GST, and compliance solutions.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-12">
+                <!-- Start Choose Left -->
+                <div class="choose-left">
+                    <h3>Who We Are</h3>
+                    <p>We are a team of financial and tax experts dedicated to helping businesses stay compliant, optimize their finances, and grow strategically.</p>
+                    <p>With years of experience, we ensure seamless tax filings, GST consultation, and financial advisory services.</p>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <ul class="list">
+                                <li><i class="fa fa-caret-right"></i>Expert GST & Tax Consultants</li>
+                                <li><i class="fa fa-caret-right"></i>Business Compliance Solutions</li>
+                                <li><i class="fa fa-caret-right"></i>Financial Planning & Advisory</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6">
+                            <ul class="list">
+                                <li><i class="fa fa-caret-right"></i>Dedicated Client Support</li>
+                                <li><i class="fa fa-caret-right"></i>Seamless Digital Solutions</li>
+                                <li><i class="fa fa-caret-right"></i>Trusted by 1000+ Clients</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Choose Left -->
+            </div>
+            <div class="col-lg-6 col-12">
+                <!-- Start Choose Right -->
+                <div class="choose-right">
+                    <div class="video-image">
+                        <!-- Video Animation -->
+                        <div class="promo-video">
+                            <div class="waves-block">
+                                <div class="waves wave-1"></div>
+                                <div class="waves wave-2"></div>
+                                <div class="waves wave-3"></div>
+                            </div>
+                        </div>
+                        <!--/ End Video Animation -->
+                        <a href="https://www.youtube.com/watch?v=RFVXy6CRVR4" class="video video-popup mfp-iframe"><i class="fa fa-play"></i></a>
+                    </div>
+                </div>
+                <!-- End Choose Right -->
+            </div>
+        </div>
+    </div>
+</section>
+<!--/ End Why Choose Us -->
+
+<!-- Start Call to Action -->
+<section class="call-action overlay" data-stellar-background-ratio="0.5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-12">
+                <div class="content">
+                    <h2>Still Confused? Call @ +919876543210</h2>
+                    <p>We help businesses with tax filing, GST registration, and financial planning. Get expert guidance today.</p>
+                    <div class="button">
+                        <a href="#" class="btn">Get Consultation</a>
+                        <a href="#" class="btn second">Learn More <i class="fa fa-long-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/ End Call to Action -->
+
+<!-- Start Services -->
+<section class="services section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <h2>Our Expert Services to Grow Your Business</h2>
+                    <img src="{% static 'img/section-img.png' %}" alt="#">
+                    <p>We provide professional financial, tax, and GST consultation to help your business succeed.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-12">
+                <!-- Start Single Service -->
+                <div class="single-service">
+                    <i class="icofont icofont-money-bag"></i>
+                    <h4><a href="service-details.html">Tax Filing & Compliance</a></h4>
+                    <p>Ensure hassle-free tax filing and compliance with expert guidance.</p>    
+                </div>
+                <!-- End Single Service -->
+            </div>
+            <div class="col-lg-4 col-md-6 col-12">
+                <!-- Start Single Service -->
+                <div class="single-service">
+                    <i class="icofont icofont-bank-alt"></i>
+                    <h4><a href="service-details.html">GST Registration & Returns</a></h4>
+                    <p>Get your GST registration done and manage returns efficiently.</p>    
+                </div>
+                <!-- End Single Service -->
+            </div>
+            <div class="col-lg-4 col-md-6 col-12">
+                <!-- Start Single Service -->
+                <div class="single-service">
+                    <i class="icofont icofont-chart-growth"></i>
+                    <h4><a href="service-details.html">Business Advisory</a></h4>
+                    <p>Strategic financial planning to help your business scale and succeed.</p>    
+                </div>
+                <!-- End Single Service -->
+            </div>
+            <div class="col-lg-4 col-md-6 col-12">
+                <!-- Start Single Service -->
+                <div class="single-service">
+                    <i class="icofont icofont-file-document"></i>
+                    <h4><a href="service-details.html">Company Registration</a></h4>
+                    <p>Register your company with ease and comply with all legal formalities.</p>    
+                </div>
+                <!-- End Single Service -->
+            </div>
+            <div class="col-lg-4 col-md-6 col-12">
+                <!-- Start Single Service -->
+                <div class="single-service">
+                    <i class="icofont icofont-law-document"></i>
+                    <h4><a href="service-details.html">Income Tax Planning</a></h4>
+                    <p>Optimize tax savings with expert income tax planning and advisory.</p>    
+                </div>
+                <!-- End Single Service -->
+            </div>
+            <div class="col-lg-4 col-md-6 col-12">
+                <!-- Start Single Service -->
+                <div class="single-service">
+                    <i class="icofont icofont-briefcase"></i>
+                    <h4><a href="service-details.html">Audit & Assurance</a></h4>
+                    <p>Comprehensive audit and assurance services to ensure compliance.</p>    
+                </div>
+                <!-- End Single Service -->
+            </div>
+        </div>
+    </div>
+</section>
+<!--/ End Services -->
+
+<!-- Start Testimonials -->
+<div class="clients overlay">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-12">
+                <div class="owl-carousel clients-slider">
+                    <div class="single-clients">
+                        <p>"The legal team at this firm provided outstanding support for our corporate compliance needs. Highly recommended!"</p>
+                        <h4>- Rajesh Sharma</h4>
+                    </div>
+                    <div class="single-clients">
+                        <p>"Their financial advisory services helped me save a lot on taxes while ensuring legal compliance. Great experience!"</p>
+                        <h4>- Priya Mehta</h4>
+                    </div>
+                    <div class="single-clients">
+                        <p>"I was struggling with a business contract dispute, and their expert legal guidance resolved the issue smoothly."</p>
+                        <h4>- Amit Verma</h4>
+                    </div>
+                    <div class="single-clients">
+                        <p>"Professional, reliable, and knowledgeable. They helped us structure our startup finances efficiently."</p>
+                        <h4>- Sneha Nair</h4>
+                    </div>
+                    <div class="single-clients">
+                        <p>"Excellent service! Their team made the complex process of company registration so easy for us."</p>
+                        <h4>- Vikram Patel</h4>
+                    </div>
+                    <div class="single-clients">
+                        <p>"From investment planning to legal paperwork, they handled everything with great expertise."</p>
+                        <h4>- Ananya Iyer</h4>
+                    </div>
+                    <div class="single-clients">
+                        <p>"I appreciate their guidance on property laws, which helped me avoid a risky real estate deal."</p>
+                        <h4>- Manoj Khanna</h4>
+                    </div>
+                    <div class="single-clients">
+                        <p>"They helped us set up an ironclad financial strategy for our business expansion. Truly commendable!"</p>
+                        <h4>- Kavita Joshi</h4>
+                    </div>
+                    <div class="single-clients">
+                        <p>"Their legal expertise helped us win a crucial corporate case. Best decision to consult them!"</p>
+                        <h4>- Rohit Malhotra</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Testimonials -->
+
+<!-- Appointment Section -->
+<section class="appointment">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <h2>Get in Touch with Our Experts. Schedule a Consultation</h2>
+                    <img src="{% static 'img/section-img.png' %}" alt="#">
+                    <p>We provide expert solutions tailored to your needs. Book an appointment with our specialists today.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-12">
+                <form class="form" id="consultationForm" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="form-group">
+                                <input name="name" type="text" placeholder="Your Name" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="form-group">
+                                <input name="email" type="email" placeholder="Your Email" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="form-group">
+                                <input name="phone_number" type="text" placeholder="Your Phone" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="form-group">
+                                <select name="service" class="form-control" required>
+                                    <option value="" selected disabled>Select Service</option>
+                                    {% for service in popular_services %}
+                                    <option value="{{ service.heading }}">{{ service.heading }}</option>
+                                    {% endfor %}
+                                    <option value="Other">Other (Please Specify)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="form-group">
+                                <input type="date" name="date" placeholder="Preferred Date" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-12">
+                            <div class="form-group">
+                                <textarea name="query" placeholder="Tell us about your needs..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5 col-md-4 col-12">
+                            <div class="form-group">
+                                <div class="button">
+                                    <button type="submit" class="btn">Book Consultation</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-7 col-md-8 col-12">
+                            <p>(Our team will contact you to confirm the appointment)</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="appointment-image">
+                    <img src="{% static 'img/contact-img.png' %}" alt="#">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            // Toast Notification Function
+            function showCustomToast(message, type) {
+                let toast = $("#customToast");
+                let toastMessage = $("#customToastMessage");
+        
+                toastMessage.text(message);
+                toast.removeClass("success error").addClass(type);
+                toast.addClass("show");
+        
+                setTimeout(function() {
+                    toast.removeClass("show");
+                }, 3000);
+            }
+        
+            // Consultation Form Submission
+            $('#consultationForm').submit(function(e) {
+                e.preventDefault();
+                var form = $(this);
+                var submitBtn = form.find('button[type="submit"]');
+                
+                // Show loading state
+                submitBtn.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Processing...');
+                submitBtn.prop('disabled', true);
+                
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'submit_consultation' %}",
+                    data: form.serialize(),
+                    success: function(response) {
+                        showCustomToast('Consultation booked successfully! Our team will contact you soon.', 'success');
+                        form[0].reset();
+                    },
+                    error: function(xhr) {
+                        var errorMsg = xhr.responseJSON?.error || "Error submitting form. Please try again.";
+                        showCustomToast(errorMsg, 'error');
+                    },
+                    complete: function() {
+                        submitBtn.html('Book Consultation');
+                        submitBtn.prop('disabled', false);
+                    }
+                });
+            });
+        
+            // Query Form Submission (your existing form)
+            $("#queryForm").submit(function(event) {
+                event.preventDefault();
+        
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'submit_query' %}",
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        showCustomToast(response.message, "success");
+                        $("#queryForm")[0].reset();
+                    },
+                    error: function() {
+                        showCustomToast("Error submitting query", "error");
+                    }
+                });
+            });
+        });
+        </script>
+</section>
+
+
+
+{% endblock content %}

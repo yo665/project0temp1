@@ -1,0 +1,137 @@
+{% extends "base.html" %} 
+{% load static %}
+
+{% block content %}
+
+<!-- Appointment Section -->
+<section class="appointment">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <h2>Get in Touch with Our Experts. Schedule a Consultation</h2>
+                    <img src="{% static 'img/section-img.png' %}" alt="#">
+                    <p>We provide expert solutions tailored to your needs. Book an appointment with our specialists today.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-12">
+                <form class="form" id="consultationForm" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="form-group">
+                                <input name="name" type="text" placeholder="Your Name" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="form-group">
+                                <input name="email" type="email" placeholder="Your Email" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="form-group">
+                                <input name="phone_number" type="text" placeholder="Your Phone" required>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="form-group">
+                                <input type="date" name="date" placeholder="Preferred Date" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-12">
+                            <div class="form-group">
+                                <textarea name="query" placeholder="Tell us about your needs..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5 col-md-4 col-12">
+                            <div class="form-group">
+                                <div class="button">
+                                    <button type="submit" class="btn">Book Consultation</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-7 col-md-8 col-12">
+                            <p>(Our team will contact you to confirm the appointment)</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="appointment-image">
+                    <img src="{% static 'img/contact-img.png' %}" alt="#">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            // Toast Notification Function
+            function showCustomToast(message, type) {
+                let toast = $("#customToast");
+                let toastMessage = $("#customToastMessage");
+        
+                toastMessage.text(message);
+                toast.removeClass("success error").addClass(type);
+                toast.addClass("show");
+        
+                setTimeout(function() {
+                    toast.removeClass("show");
+                }, 3000);
+            }
+        
+            // Consultation Form Submission
+            $('#consultationForm').submit(function(e) {
+                e.preventDefault();
+                var form = $(this);
+                var submitBtn = form.find('button[type="submit"]');
+                
+                // Show loading state
+                submitBtn.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Processing...');
+                submitBtn.prop('disabled', true);
+                
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'submit_consultation' %}",
+                    data: form.serialize(),
+                    success: function(response) {
+                        showCustomToast('Consultation booked successfully! Our team will contact you soon.', 'success');
+                        form[0].reset();
+                    },
+                    error: function(xhr) {
+                        var errorMsg = xhr.responseJSON?.error || "Error submitting form. Please try again.";
+                        showCustomToast(errorMsg, 'error');
+                    },
+                    complete: function() {
+                        submitBtn.html('Book Consultation');
+                        submitBtn.prop('disabled', false);
+                    }
+                });
+            });
+        
+            // Query Form Submission (your existing form)
+            $("#queryForm").submit(function(event) {
+                event.preventDefault();
+        
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'submit_query' %}",
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        showCustomToast(response.message, "success");
+                        $("#queryForm")[0].reset();
+                    },
+                    error: function() {
+                        showCustomToast("Error submitting query", "error");
+                    }
+                });
+            });
+        });
+        </script>
+</section>
+
+{% endblock content %}

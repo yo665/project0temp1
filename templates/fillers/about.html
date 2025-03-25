@@ -1,0 +1,546 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- Breadcrumbs -->
+<div class="breadcrumbs overlay">
+    <div class="container">
+        <div class="bread-inner">
+            <div class="row">
+                <div class="col-12">
+                    <h2>About Us</h2>
+                    <ul class="bread-list">
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li><i class="icofont-simple-right"></i></li>
+                        <li class="active">About Us</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Breadcrumbs -->
+
+<!-- About Section -->
+<section class="about-section section">
+    <div class="container">
+        <div class="row align-items-center">
+            
+            <div class="col-lg-6 col-md-12 order-lg-1 order-2">
+                <div class="about-left">
+                    
+                    <div class="about-content">
+                        <p>Founded in 2014, we have grown from a small consultancy to India's leading professional services platform, helping thousands of businesses with their legal, tax, and compliance needs.</p>
+                        <p>Our team of Chartered Accountants, Company Secretaries, and Legal Experts bring decades of combined experience to ensure your business remains compliant while you focus on growth.</p>
+                        <div class="about-features row">
+                            <div class="col-md-4 col-6">
+                                <div class="single-feature">
+                                    <i class="icofont-check-circled"></i>
+                                    <h4>17,000+</h4>
+                                    <p>Happy Clients</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-6">
+                                <div class="single-feature">
+                                    <i class="icofont-check-circled"></i>
+                                    <h4>4.7/5</h4>
+                                    <p>Average Rating</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-6">
+                                <div class="single-feature">
+                                    <i class="icofont-check-circled"></i>
+                                    <h4>50+</h4>
+                                    <p>Experts Team</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 order-lg-2 order-1 mb-4 mb-lg-0">
+                <div class="about-right">
+                    <img src="{% static 'img/about-team.jpg' %}" alt="Our Team" class="about-image img-fluid rounded">
+                    <div class="about-experience">
+                        <h3>10+</h3>
+                        <p>Years Experience</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mission Section -->
+<section class="mission-section section bg-gray">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <div class="section-title">
+                    <h2>Our Mission & Values</h2>
+                    <p class="subtitle">What drives us every day</p>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="single-mission h-100">
+                    <div class="mission-icon">
+                        <i class="icofont-target"></i>
+                    </div>
+                    <h3>Our Mission</h3>
+                    <p>To simplify compliance for businesses through technology-driven solutions and expert guidance, enabling entrepreneurs to focus on growth.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="single-mission h-100">
+                    <div class="mission-icon">
+                        <i class="icofont-eye"></i>
+                    </div>
+                    <h3>Our Vision</h3>
+                    <p>To become India's most trusted professional services platform, recognized for our integrity, expertise, and client-centric approach.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="single-mission h-100">
+                    <div class="mission-icon">
+                        <i class="icofont-diamond"></i>
+                    </div>
+                    <h3>Our Values</h3>
+                    <p>Integrity, Excellence, Transparency, Innovation, and Client Success form the foundation of everything we do.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section class="team-section section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <div class="section-title">
+                    <h2>Meet Our Leadership</h2>
+                    <p class="subtitle">The experts behind your success</p>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                <div class="single-team h-100">
+                    <div class="team-image">
+                        <img src="{% static 'img/team1.jpg' %}" alt="Team Member" class="img-fluid">
+                        <div class="team-social">
+                            <a href="#"><i class="icofont-linkedin"></i></a>
+                            <a href="#"><i class="icofont-twitter"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-content">
+                        <h3>Rahul Sharma</h3>
+                        <p class="position">Founder & CEO</p>
+                        <span class="qualification">CA, CS</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                <div class="single-team h-100">
+                    <div class="team-image">
+                        <img src="{% static 'img/team1.jpg' %}" alt="Team Member" class="img-fluid">
+                        <div class="team-social">
+                            <a href="#"><i class="icofont-linkedin"></i></a>
+                            <a href="#"><i class="icofont-twitter"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-content">
+                        <h3>Priya Patel</h3>
+                        <p class="position">Head of Operations</p>
+                        <span class="qualification">CA, MBA</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                <div class="single-team h-100">
+                    <div class="team-image">
+                        <img src="{% static 'img/team1.jpg' %}" alt="Team Member" class="img-fluid">
+                        <div class="team-social">
+                            <a href="#"><i class="icofont-linkedin"></i></a>
+                            <a href="#"><i class="icofont-twitter"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-content">
+                        <h3>Vikram Singh</h3>
+                        <p class="position">Legal Head</p>
+                        <span class="qualification">LLB, CS</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                <div class="single-team h-100">
+                    <div class="team-image">
+                        <img src="{% static 'img/team1.jpg' %}" alt="Team Member" class="img-fluid">
+                        <div class="team-social">
+                            <a href="#"><i class="icofont-linkedin"></i></a>
+                            <a href="#"><i class="icofont-twitter"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-content">
+                        <h3>Ananya Gupta</h3>
+                        <p class="position">Technology Head</p>
+                        <span class="qualification">B.Tech, MBA</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8 col-md-12 mb-3 mb-lg-0">
+                <h2 class="mb-2" style="color: black;">Ready to simplify your business compliance?</h2>
+                <p class="mb-0"  style="color: black;">Get in touch with our experts for a free consultation</p>
+            </div>
+            <div class="col-lg-4 col-md-12 text-lg-right text-center">
+                <a href="" class="btn btn-dark">Contact Us</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Base Styles */
+    .section {
+        padding: 60px 0;
+        position: relative;
+    }
+    
+    .section-title h2 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        color: #333;
+    }
+    
+    .subtitle {
+        color: #6c757d;
+        margin-bottom: 2rem;
+        font-size: 1.1rem;
+    }
+    
+    /* About Section */
+    .about-section {
+        padding: 80px 0;
+    }
+    
+    .about-content p {
+        margin-bottom: 1.5rem;
+        font-size: 1rem;
+        line-height: 1.8;
+        color: #555;
+    }
+    
+    .about-features {
+        margin-top: 2rem;
+    }
+    
+    .single-feature {
+        text-align: center;
+        padding: 1.5rem;
+        background: #f9f9f9;
+        border-radius: 8px;
+        height: 100%;
+        transition: transform 0.3s ease;
+    }
+    
+    .single-feature:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    .single-feature i {
+        font-size: 2rem;
+        color: #3498db;
+        margin-bottom: 1rem;
+    }
+    
+    .single-feature h4 {
+        font-size: 1.5rem;
+        margin: 0.5rem 0;
+        color: #333;
+    }
+    
+    .single-feature p {
+        font-size: 0.9rem;
+        color: #666;
+        margin-bottom: 0;
+    }
+    
+    .about-right {
+        position: relative;
+        padding: 0 15px;
+    }
+    
+    .about-image {
+        border-radius: 8px;
+        width: 100%;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .about-experience {
+        position: absolute;
+        bottom: -20px;
+        right: 30px;
+        background: #3498db;
+        color: white;
+        padding: 1.5rem;
+        border-radius: 8px;
+        text-align: center;
+        min-width: 120px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    .about-experience h3 {
+        font-size: 2.2rem;
+        margin: 0;
+        line-height: 1;
+    }
+    
+    .about-experience p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: white !important;
+    }
+    
+    /* Mission Section */
+    .bg-gray {
+        background-color: #f8f9fa;
+    }
+    
+    .single-mission {
+        padding: 2rem;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        transition: transform 0.3s ease;
+        height: 100%;
+    }
+    
+    .single-mission:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    .mission-icon {
+        font-size: 2.5rem;
+        color: #3498db;
+        margin-bottom: 1.5rem;
+    }
+    
+    .single-mission h3 {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        color: #333;
+    }
+    
+    .single-mission p {
+        color: #666;
+        font-size: 0.95rem;
+        line-height: 1.7;
+    }
+    
+    /* Team Section */
+    .single-team {
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        transition: all 0.3s ease;
+        height: 100%;
+    }
+    
+    .single-team:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+    
+    .team-image {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .team-image img {
+        width: 100%;
+        height: 280px;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    
+    .single-team:hover .team-image img {
+        transform: scale(1.05);
+    }
+    
+    .team-social {
+        position: absolute;
+        bottom: -50px;
+        left: 0;
+        right: 0;
+        background: rgba(52, 152, 219, 0.9);
+        padding: 1rem;
+        text-align: center;
+        transition: bottom 0.3s ease;
+    }
+    
+    .single-team:hover .team-social {
+        bottom: 0;
+    }
+    
+    .team-social a {
+        color: white;
+        margin: 0 0.5rem;
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+    }
+    
+    .team-social a:hover {
+        transform: translateY(-3px);
+    }
+    
+    .team-content {
+        padding: 1.5rem;
+        text-align: center;
+    }
+    
+    .team-content h3 {
+        margin-bottom: 0.5rem;
+        font-size: 1.2rem;
+        color: #333;
+    }
+    
+    .position {
+        color: #3498db;
+        font-size: 0.9rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .qualification {
+        font-size: 0.8rem;
+        color: #777;
+        font-style: italic;
+    }
+    
+    /* CTA Section */
+    .cta-section {
+        padding: 3rem 0;
+        color: white;
+        background: #f9f9f9;
+    }
+    
+    .cta-section h2 {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .cta-section p {
+        opacity: 0.9;
+        font-size: 1.1rem;
+        margin-bottom: 0;
+    }
+    
+    .btn-light {
+        background: white;
+        color: #3498db;
+        padding: 0.75rem 2rem;
+        font-weight: 600;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-light:hover {
+        background: #f8f9fa;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 991.98px) {
+        .section {
+            padding: 50px 0;
+        }
+        
+        .about-left {
+            padding-right: 0;
+            margin-top: 30px;
+        }
+        
+        .about-experience {
+            right: 15px;
+            padding: 1rem;
+            min-width: 100px;
+        }
+        
+        .team-image img {
+            height: 240px;
+        }
+    }
+    
+    @media (max-width: 767.98px) {
+        .section {
+            padding: 40px 0;
+        }
+        
+        .section-title h2 {
+            font-size: 1.7rem;
+        }
+        
+        .about-section .row {
+            flex-direction: column-reverse;
+        }
+        
+        .about-experience {
+            right: 50%;
+            transform: translateX(50%);
+            bottom: -25px;
+        }
+        
+        .single-feature {
+            margin-bottom: 15px;
+        }
+        
+        .team-image img {
+            height: 200px;
+        }
+        
+        .cta-section .text-lg-right {
+            text-align: center !important;
+        }
+        
+        .cta-section .btn {
+            margin-top: 15px;
+        }
+    }
+    
+    @media (max-width: 575.98px) {
+        .section-title h2 {
+            font-size: 1.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+        }
+        
+        .about-features .col-6 {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+        
+        .single-feature {
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+</style>
+
+{% endblock content %}

@@ -1,0 +1,341 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- Breadcrumbs -->
+<div class="breadcrumbs overlay">
+    <div class="container">
+        <div class="bread-inner">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Frequently Asked Questions</h2>
+                    <ul class="bread-list">
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li><i class="icofont-simple-right"></i></li>
+                        <li class="active">FAQs</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Breadcrumbs -->
+
+<!-- FAQ Section -->
+<section class="faq-section section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <div class="section-title">
+                    <h2>Common Questions</h2>
+                    <p class="subtitle">Find answers to our most frequently asked questions</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="faq-accordion">
+                    <div class="accordion" id="faqAccordion1">
+                        <!-- General Questions -->
+                        <div class="card mb-3">
+                            <div class="card-header" id="headingOne">
+                                <h5 class="mb-0">
+                                    <button style="color: white;" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        What services do you offer?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#faqAccordion1">
+                                <div class="card-body">
+                                    We provide comprehensive business compliance services including company registration, GST filing, tax consultation, accounting services, trademark registration, and ongoing compliance management for businesses of all sizes.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card mb-3">
+                            <div class="card-header" id="headingTwo">
+                                <h5 class="mb-0">
+                                    <button style="color: white;" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        How long does the company registration process take?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#faqAccordion1">
+                                <div class="card-body">
+                                    Typically, private limited company registration takes 7-10 working days, depending on document verification and MCA approval. LLP registration usually takes 10-15 working days. We expedite the process as much as possible.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card mb-3">
+                            <div class="card-header" id="headingThree">
+                                <h5 class="mb-0">
+                                    <button style="color: white;" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        Do you provide services outside India?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#faqAccordion1">
+                                <div class="card-body">
+                                    Currently, we primarily serve clients within India. However, we do assist foreign nationals and NRIs with business setup and compliance in India through our specialized NRI services division.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="faq-accordion">
+                    <div class="accordion" id="faqAccordion2">
+                        <!-- Pricing Questions -->
+                        <div class="card mb-3">
+                            <div class="card-header" id="headingFour">
+                                <h5 class="mb-0">
+                                    <button style="color: white;" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                                        What are your payment terms?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapseFour" class="collapse show" aria-labelledby="headingFour" data-parent="#faqAccordion2">
+                                <div class="card-body">
+                                    For most services, we require 50% payment upfront and the remaining 50% upon completion. For ongoing compliance services, we offer monthly, quarterly, or annual payment plans based on your preference.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card mb-3">
+                            <div class="card-header" id="headingFive">
+                                <h5 class="mb-0">
+                                    <button style="color: white;" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                        Do you offer refunds if I'm not satisfied?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#faqAccordion2">
+                                <div class="card-body">
+                                    We offer partial refunds for services not yet rendered if you're unsatisfied. However, for services already completed (like government filings where fees have been paid), refunds may not be possible. We always strive for 100% client satisfaction.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card mb-3">
+                            <div class="card-header" id="headingSix">
+                                <h5 class="mb-0">
+                                    <button style="color: white;" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                        Are there any hidden charges?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#faqAccordion2">
+                                <div class="card-body">
+                                    No, we believe in complete transparency. Our quotes include all professional fees. Any government fees or third-party charges are clearly communicated upfront before you commit to any service.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- More Questions Section -->
+<section class="more-questions section bg-gray">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <div class="section-title">
+                    <h2>Still Have Questions?</h2>
+                    <p class="subtitle">Can't find what you're looking for? We're here to help</p>
+                </div>
+                <div class="contact-cta">
+                    <a href="{% url 'contact' %}" class="btn btn-primary mr-3">Contact Us</a>
+                    <a style="color: white;" href="tel:+911234567890" class="btn btn-outline-primary">
+                        <i class="icofont-phone"></i> +91 12345 67890
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8 col-md-12 mb-3 mb-lg-0">
+                <h2 class="mb-2" style="color: black;">Ready to simplify your business compliance?</h2>
+                <p class="mb-0" style="color: black;">Get in touch with our experts for a free consultation</p>
+            </div>
+            <div class="col-lg-4 col-md-12 text-lg-right text-center">
+                <a href="{% url 'contact' %}" class="btn btn-dark">Contact Us</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Base Styles (consistent with about.html) */
+    .section {
+        padding: 60px 0;
+        position: relative;
+    }
+    
+    .section-title h2 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        color: #333;
+    }
+    
+    .subtitle {
+        color: #6c757d;
+        margin-bottom: 2rem;
+        font-size: 1.1rem;
+    }
+    
+    /* FAQ Specific Styles */
+    .faq-accordion {
+        height: 100%;
+    }
+    
+    .card {
+        border: none;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        margin-bottom: 15px;
+    }
+    
+    .card-header {
+        background: white;
+        border-bottom: none;
+        padding: 0;
+    }
+    
+    .card-header h5 {
+        margin: 0;
+    }
+    
+    .btn-link {
+        width: 100%;
+        text-align: left;
+        color: #333;
+        font-weight: 600;
+        text-decoration: none;
+        padding: 1.25rem 1.5rem;
+        position: relative;
+    }
+    
+    .btn-link:after {
+        content: "\f107";
+        font-family: "FontAwesome";
+        position: absolute;
+        right: 1.5rem;
+        top: 1.25rem;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-link.collapsed:after {
+        content: "\f105";
+    }
+    
+    .btn-link:hover {
+        color: #3498db;
+        text-decoration: none;
+    }
+    
+    .card-body {
+        padding: 1.5rem;
+        color: #555;
+        line-height: 1.7;
+    }
+    
+    /* More Questions Section */
+    .more-questions {
+        text-align: center;
+    }
+    
+    .contact-cta {
+        margin-top: 2rem;
+    }
+    
+    .btn-outline-primary {
+        border-color: #3498db;
+        color: #3498db;
+    }
+    
+    .btn-outline-primary:hover {
+        background: #3498db;
+        color: white;
+    }
+    
+    /* CTA Section (same as about.html) */
+    .cta-section {
+        padding: 3rem 0;
+        color: white;
+        background: #f9f9f9;
+    }
+    
+    .cta-section h2 {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .cta-section p {
+        opacity: 0.9;
+        font-size: 1.1rem;
+        margin-bottom: 0;
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 991.98px) {
+        .section {
+            padding: 50px 0;
+        }
+        
+        .faq-accordion {
+            margin-bottom: 30px;
+        }
+    }
+    
+    @media (max-width: 767.98px) {
+        .section {
+            padding: 40px 0;
+        }
+        
+        .section-title h2 {
+            font-size: 1.7rem;
+        }
+        
+        .btn-link {
+            padding: 1rem 1.25rem;
+            font-size: 0.95rem;
+        }
+        
+        .contact-cta .btn {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    }
+    
+    @media (max-width: 575.98px) {
+        .section-title h2 {
+            font-size: 1.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+        }
+        
+        .card-body {
+            padding: 1rem;
+            font-size: 0.9rem;
+        }
+    }
+</style>
+
+{% endblock content %}

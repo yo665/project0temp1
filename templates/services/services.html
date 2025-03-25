@@ -1,0 +1,348 @@
+{% extends "base.html" %} 
+{% load static %}
+
+{% block content %}
+<!-- Breadcrumbs -->
+<div class="breadcrumbs overlay">
+    <div class="container">
+        <div class="bread-inner">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Our Services</h2>
+                    <ul class="bread-list">
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li><i class="icofont-simple-right"></i></li>
+                        <li class="active">{{ service.heading }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Breadcrumbs -->
+
+<!-- Service Section -->
+<section class="service-page section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-7">
+                <!-- Service Header -->
+                <div class="service-header-box">
+                    <h1 class="service-main-title">{{ service.heading }}</h1>
+                    
+                    {% if service.base_price %}
+                    <div class="service-price-tag">
+                        <span class="service-price-badge">Starting at ₹{{ service.base_price|stringformat:"d" }}</span>
+                        <span class="service-price-discount">₹999 T&C*</span>
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <!-- Service Features -->
+                <div class="service-features-box">
+                    <ul class="service-features-list">
+                        {% for field in fields %}
+                        <li class="service-feature-item">
+                            <span class="service-feature-icon">✓</span>
+                            {{ field.value }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                
+                <!-- Documents Section -->
+                {% for subcontent in subcontents %}
+                <div class="service-docs-box">
+                    <h3 class="service-docs-title">{{ subcontent.heading }}</h3>
+                    <ul class="service-docs-list">
+                        {% for field in subcontents.first.subcontent_fields.all %}
+                        <li>{{ field.value }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}
+
+            </div>
+            
+            <!-- Form Section -->
+            <div class="col-lg-4 col-md-5">
+                <div class="service-form-box">
+                    <div class="service-form-header">
+                        <h3 class="service-form-title">{{ service.form_name }}</h3>
+                    </div>
+                    
+                    <form id="serviceForm" class="service-form-main">
+                        {% csrf_token %}
+                        <input type="hidden" name="service" value="{{ service.heading }}">
+                        <div class="service-form-group">
+                            <input type="text" name="name" class="service-form-input" placeholder="Your Name" required>
+                        </div>
+
+                        <div class="service-form-group">
+                            <input type="email" name="email" class="service-form-input" placeholder="Email" required>
+                        </div>
+                        
+                        <div class="service-form-group">
+                            <input type="text" name="phone_number" class="service-form-input" placeholder="Mobile Number" required>
+                        </div>
+                        
+                        <div class="service-form-group">
+                            <input type="text" name="city_pincode" class="service-form-input" placeholder="City/Pincode">
+                        </div>
+                        
+                        <div class="gst-toggle-container">
+                            <input type="checkbox" name="updates_on_whatsapp" id="whatsappToggle" style="display: none;">
+                            <label for="whatsappToggle" class="gst-toggle-switch"></label>
+                            <i class="fa fa-whatsapp" aria-hidden="true" style="margin-bottom: 4px;"></i>&nbsp;
+                            <span>Receive updates on WhatsApp</span>
+                        </div> 
+                        
+                        <button type="submit" class="service-form-button">Get Started</button>
+                    </form>
+                    
+                    <!-- Reviews -->
+                    <div class="service-reviews-box gst-reviews">
+                        <p>
+                            <img src="{% static 'img/icons8-google-144.png' %}" alt="Google"> Google Reviews
+                        </p>
+                        <div class="service-reviews-stars">★★★★★</div>
+                        <div class="service-reviews-rating">4.7/5</div>
+                        <div class="service-reviews-count">17k+ Happy Reviews</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Service Section -->
+
+<style>
+    /* New CSS for the service page */
+    .service-page {
+        padding: 40px 0;
+    }
+    
+    .service-header-box {
+        margin-bottom: 30px;
+    }
+    
+    .service-main-title {
+        font-size: 28px;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 15px;
+    }
+    
+    .service-price-tag {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .service-price-badge {
+        background: #f5f5f5;
+        padding: 8px 15px;
+        border-radius: 4px;
+        font-weight: 600;
+        color: #333;
+    }
+    
+    .service-price-discount {
+        color: #e74c3c;
+        text-decoration: line-through;
+        font-size: 14px;
+    }
+    
+    .service-features-box {
+        margin-bottom: 30px;
+    }
+    
+    .service-features-list {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .service-feature-item {
+        padding: 10px 0;
+        border-bottom: 1px dashed #eee;
+        display: flex;
+        align-items: center;
+    }
+    
+    .service-feature-icon {
+        color: #27ae60;
+        margin-right: 10px;
+        font-weight: bold;
+    }
+    
+    .service-docs-box {
+        background: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+    }
+    
+    .service-docs-title {
+        font-size: 18px;
+        margin-bottom: 15px;
+        color: #333;
+    }
+    
+    .service-docs-list {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 15px;
+    }
+    
+    .service-docs-list li {
+        padding: 5px 0;
+        position: relative;
+        padding-left: 20px;
+    }
+    
+    .service-docs-list li:before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: #3498db;
+    }
+    
+    .service-view-all {
+        color: #3498db;
+        text-decoration: none;
+        font-size: 14px;
+    }
+    
+    .service-form-box {
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        padding: 25px;
+        position: sticky;
+        top: 20px;
+    }
+    
+    .service-form-header {
+        margin-bottom: 20px;
+    }
+    
+    .service-form-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 5px;
+    }
+    
+    .service-form-subtitle {
+        color: #7f8c8d;
+        font-size: 14px;
+        margin: 0;
+    }
+    
+    .service-form-main {
+        margin-bottom: 20px;
+    }
+    
+    .service-form-group {
+        margin-bottom: 15px;
+    }
+    
+    .service-form-input {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+    
+    .service-form-checkbox {
+        margin: 15px 0;
+        display: flex;
+        align-items: center;
+    }
+    
+    .service-form-checkbox input {
+        margin-right: 10px;
+    }
+    
+    .whatsapp-label {
+        color: #25D366;
+        font-weight: 600;
+    }
+    
+    .service-form-button {
+        width: 100%;
+        padding: 12px;
+        background: #3498db;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+    
+    .service-form-button:hover {
+        background: #2980b9;
+    }
+    
+    .service-reviews-box {
+        text-align: center;
+        padding: 15px;
+        background: #f9f9f9;
+        border-radius: 8px;
+    }
+    
+    .service-reviews-stars {
+        color: #f39c12;
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+    
+    .service-reviews-rating {
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+    
+    .service-reviews-count {
+        color: #7f8c8d;
+        font-size: 14px;
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+        $("#serviceForm").submit(function (event) {
+            event.preventDefault();  // Prevent default form submission
+
+            $.ajax({
+                type: "POST",
+                url: "{% url 'submit_service_form' %}",
+                data: $(this).serialize(),
+                success: function (response) {
+                    showCustomToast(response.message, "success");
+                    $("#serviceForm")[0].reset(); // Reset form fields
+                },
+                error: function () {
+                    showCustomToast("Error submitting form", "error");
+                }
+            });
+        });
+        
+        function showCustomToast(message, type) {
+            let toast = $("#customToast");
+            let toastMessage = $("#customToastMessage");
+
+            toastMessage.text(message);
+            toast.removeClass("success error").addClass(type); // Change color based on type
+
+            toast.addClass("show");
+
+            setTimeout(function () {
+                toast.removeClass("show");
+            }, 3000);
+        }
+    });
+</script>
+
+{% endblock content %}
