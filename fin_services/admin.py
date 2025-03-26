@@ -1,7 +1,7 @@
 from django.contrib import admin
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
-from .models import Service, Field, SubContent, SubContentField, GenericForm, QueryForm, ConsultationForm
+from .models import Service, Field, SubContent, SubContentField, GenericForm, QueryForm, ConsultationForm, Product, ProductField
 
 admin.site.site_header = "Fintrix Administration"
 admin.site.site_title = "Fintrix Admin Portal"
@@ -84,3 +84,20 @@ class GenericFormAdmin(ImportExportModelAdmin):
     resource_class = GenericFormResource
     list_display = ('name', 'phone_number', 'city_pincode', 'status', 'service')
     list_filter = ('name', 'status', 'service')
+
+class ProductResource(resources.ModelResource):
+    class Meta:
+        model = Product
+        skip_unchanged = True
+        report_skipped = True
+        import_id_fields = ('slug',)
+
+class ProductFieldInline(admin.TabularInline):
+    model = ProductField
+    extra = 1
+
+@admin.register(Product)
+class ProductAdmin(ImportExportModelAdmin):
+    resource_class = ProductResource
+    list_display = ('name', 'base_price', 'slug')
+    inlines = [ProductFieldInline]

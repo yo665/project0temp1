@@ -1,0 +1,247 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<!-- Privacy Policy Page for Fintrix Consulting -->
+<div class="pp-container">
+    <div class="pp-header">
+        <h1 class="pp-title">Fintrix Consulting Privacy Policy</h1>
+        <p class="pp-updated">Last Updated: March 26, 2025</p>
+    </div>
+
+    <div class="pp-content">
+        <section class="pp-section">
+            <h2 class="pp-section-title">1. Information Collection</h2>
+            <div class="pp-section-content">
+                <p>When you use our guest checkout service, we collect:</p>
+                <ul class="pp-list">
+                    <li class="pp-list-item"><strong>Personal Information:</strong> Name, email, phone number for service delivery</li>
+                    <li class="pp-list-item"><strong>Payment Information:</strong> Processed securely via our payment gateway (we don't store card details)</li>
+                    <li class="pp-list-item"><strong>Service Details:</strong> Specifics to the service requested</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="pp-section">
+            <h2 class="pp-section-title">2. Use of Information</h2>
+            <div class="pp-section-content">
+                <p>We use your information exclusively for:</p>
+                <ul class="pp-list">
+                    <li class="pp-list-item">Providing and managing service</li>
+                    <li class="pp-list-item">Processing payments and sending service confirmations</li>
+                    <li class="pp-list-item">Communicating about your service (appointments, updates)</li>
+                    <li class="pp-list-item">Improving our services and customer experience</li>
+                    <li class="pp-list-item">Complying with legal obligations related to services</li>
+                </ul>
+                <p class="pp-note">We never sell your information to third parties.</p>
+            </div>
+        </section>
+
+        <section class="pp-section">
+            <h2 class="pp-section-title">3. Data Security</h2>
+            <div class="pp-section-content">
+                <p>We implement robust measures to protect your information:</p>
+                <ul class="pp-list">
+                    <li class="pp-list-item">SSL encryption for all data transmissions</li>
+                    <li class="pp-list-item">Regular security audits of our systems</li>
+                    <li class="pp-list-item">Limited employee access to customer data</li>
+                    <li class="pp-list-item">Secure payment processing compliant with PCI DSS standards</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="pp-section">
+            <h2 class="pp-section-title">4. Data Retention</h2>
+            <div class="pp-section-content">
+                <p>We retain your information only as long as necessary:</p>
+                <ul class="pp-list">
+                    <li class="pp-list-item">Service records: 7 years (for tax and legal compliance)</li>
+                    <li class="pp-list-item">Contact information: Until service completion + 1 year</li>
+                    <li class="pp-list-item">Payment records: As required by financial regulations</li>
+                </ul>
+                <p>You may request earlier deletion of non-essential data.</p>
+            </div>
+        </section>
+
+        <section class="pp-section">
+            <h2 class="pp-section-title">5. Your Rights</h2>
+            <div class="pp-section-content">
+                <p>you have the right to:</p>
+                <ul class="pp-list">
+                    <li class="pp-list-item">Access the personal data we hold about you</li>
+                    <li class="pp-list-item">Request correction of inaccurate information</li>
+                    <li class="pp-list-item">Request deletion of your data (subject to legal requirements)</li>
+                    <li class="pp-list-item">Opt-out of marketing communications</li>
+                </ul>
+                <div class="pp-card">
+                    <h3 class="pp-card-title">Exercising Your Rights</h3>
+                    <p>To make any requests regarding your data, please contact us at <span class="pp-highlight">consultingfintrix@gmail.com</span> with "Data Request" in the subject line. We may need to verify your identity before processing requests.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="pp-section">
+            <h2 class="pp-section-title">6. Policy Updates</h2>
+            <div class="pp-section-content">
+                <p>We may update this policy periodically. Significant changes will be:</p>
+                <ul class="pp-list">
+                    <li class="pp-list-item">Posted on our website with clear update notices</li>
+                    <li class="pp-list-item">Communicated to active service clients via email</li>
+                </ul>
+                <p>Continued use of our services constitutes acceptance of the updated policy.</p>
+            </div>
+        </section>
+
+        <section class="pp-section">
+            <h2 class="pp-section-title">7. Contact Us</h2>
+            <div class="pp-section-content">
+                <div class="pp-contact-card">
+                    <!-- <h3 class="pp-contact-title">Data Protection Officer</h3> -->
+                    <p>Fintrix Consulting</p>
+                    <p>Email: <span class="pp-highlight">consultingfintrix@gmail.com</span></p>
+                    <p>Phone Number: <span class="pp-highlight">+91 8800462057</span></p>
+                </div>
+                <p>For general inquiries: <span class="pp-highlight">consultingfintrix@gmail.com</span></p>
+            </div>
+        </section>
+    </div>
+</div>
+
+<style>
+    /* Privacy Policy Specific Styles (pp- prefix) */
+    .pp-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+    }
+    
+    .pp-header {
+        text-align: center;
+        margin-bottom: 3rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #e1e4e8;
+    }
+    
+    .pp-title {
+        font-size: 2.5rem;
+        color: #2c3e50;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+    }
+    
+    .pp-updated {
+        color: #7f8c8d;
+        font-size: 1rem;
+    }
+    
+    .pp-content {
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+        padding: 3rem;
+    }
+    
+    .pp-section {
+        margin-bottom: 3rem;
+    }
+    
+    .pp-section-title {
+        font-size: 1.5rem;
+        color: #3498db;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 2px solid #f1f5f9;
+        font-weight: 600;
+    }
+    
+    .pp-section-content {
+        line-height: 1.8;
+        color: #34495e;
+        font-size: 1.05rem;
+    }
+    
+    .pp-list {
+        list-style-type: none;
+        padding-left: 1rem;
+        margin: 1.5rem 0;
+    }
+    
+    .pp-list-item {
+        position: relative;
+        padding-left: 1.75rem;
+        margin-bottom: 0.75rem;
+        line-height: 1.7;
+    }
+    
+    .pp-list-item:before {
+        content: "•";
+        color: #3498db;
+        font-size: 1.5rem;
+        position: absolute;
+        left: 0;
+        top: -2px;
+    }
+    
+    .pp-note {
+        background-color: #f8f9fa;
+        padding: 1rem;
+        border-left: 4px solid #3498db;
+        margin: 1.5rem 0;
+        font-style: italic;
+    }
+    
+    .pp-card {
+        background: #f8fafc;
+        border-radius: 6px;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        border-left: 4px solid #3498db;
+    }
+    
+    .pp-card-title {
+        color: #2c3e50;
+        margin-top: 0;
+        font-size: 1.2rem;
+    }
+    
+    .pp-contact-card {
+        background: #f8fafc;
+        padding: 1.5rem;
+        border-radius: 6px;
+        margin: 1.5rem 0;
+    }
+    
+    .pp-contact-title {
+        color: #2c3e50;
+        margin-top: 0;
+        font-size: 1.2rem;
+    }
+    
+    .pp-highlight {
+        color: #3498db;
+        font-weight: 500;
+    }
+    
+    strong {
+        color: #2c3e50;
+    }
+    
+    @media (max-width: 768px) {
+        .pp-container {
+            padding: 1rem;
+        }
+        
+        .pp-title {
+            font-size: 2rem;
+        }
+        
+        .pp-content {
+            padding: 1.5rem;
+        }
+        
+        .pp-section-title {
+            font-size: 1.3rem;
+        }
+    }
+</style>
+{% endblock content %}

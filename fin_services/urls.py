@@ -1,5 +1,6 @@
 from django.urls import path 
-from .views import HomePageView, submit_query, ServicesPageView, SubmitServiceFormView, search_services, submit_consultation, AboutPageView, ContactPageView, ConsultPageView, FaqPageView
+from .views import HomePageView, submit_query, ServicesPageView, SubmitServiceFormView, search_services, submit_consultation
+from .views import PrivacyPageView, TermsPageView, AboutPageView, ContactPageView, ConsultPageView, FaqPageView, ProductsPageView, PaymentCallbackView
 
 urlpatterns = [
     path("", HomePageView.as_view(), name="home"),
@@ -12,4 +13,8 @@ urlpatterns = [
     path("contact/", ContactPageView.as_view(), name="contact"),
     path("consult/", ConsultPageView.as_view(), name="consult"),
     path("faq/", FaqPageView.as_view(), name="faq"),
+    path("products/<int:product_id>/", ProductsPageView.as_view(), name="products"),
+    path('payment/callback/', PaymentCallbackView.as_view(), name='payment_callback'),
+    path("privacy/", PrivacyPageView.as_view(), name="privacy"),
+    path("terms/", TermsPageView.as_view(), name="terms"),
 ]

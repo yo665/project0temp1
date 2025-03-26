@@ -1,4 +1,5 @@
 {% load static %}
+{% load active_link %}
 
 <!doctype html>
 <html class="no-js" lang="en">
@@ -125,8 +126,8 @@
 						<div class="col-lg-6 col-md-7 col-12">
 							<!-- Top Contact -->
 							<ul class="top-contact">
-								<li><i class="fa fa-phone"></i>+880 1234 56789</li>
-								<li><i class="fa fa-envelope"></i><a href="mailto:support@yourmail.com">support@yourmail.com</a></li>
+								<li><i class="fa fa-phone"></i><a href="tel:+918800462057">+91 8800462057</a></li>
+								<li><i class="fa fa-envelope"></i><a href="mailto: consultingfintrix@gmail.com"> consultingfintrix@gmail.com</a></li>
 							</ul>
 							<!-- End Top Contact -->
 						</div>
@@ -205,7 +206,8 @@
 								<div class="main-menu">
 									<nav class="navigation">
 										<ul class="nav menu">
-											<li class="active"><a href="#">Home</a>
+											<li class="{% if request.path == '/' %}active{% endif %}">
+												<a href="{% url 'home' %}">Home</a>
 											</li>
 											<li><a href="#">Business Formation <i class="icofont-rounded-down"></i></a>
 												<ul class="dropdown">
@@ -225,7 +227,8 @@
 													</li>
 												</ul>
 											</li>
-											<li><a href="#">GST<i class="icofont-rounded-down"></i></a>
+											<li class="{% if 'gst' in request.path %}active{% endif %}">
+												<a href="#">GST<i class="icofont-rounded-down"></i></a>
 												<ul class="dropdown">
 													<li><a href="{% url 'services_page' 'gst-registration' %}">GST Registration</a></li>
 												</ul>
@@ -299,9 +302,9 @@
 									</div>
 									<div class="col-lg-6 col-md-6 col-12">
 										<ul>
-											<li><a href="#"><i class="fa fa-caret-right"></i>FAQs</a></li>
-											<li><a href="#"><i class="fa fa-caret-right"></i>Privacy Policy</a></li>
-											<li><a href="#"><i class="fa fa-caret-right"></i>Terms & Conditions</a></li>
+											<li><a href="{% url 'faq' %}"><i class="fa fa-caret-right"></i>FAQs</a></li>
+											<li><a href="{% url 'privacy' %}"><i class="fa fa-caret-right"></i>Privacy Policy</a></li>
+											<li><a href="{% url 'terms' %}"><i class="fa fa-caret-right"></i>Terms & Conditions</a></li>
 										</ul>
 									</div>
 								</div>
@@ -324,9 +327,9 @@
 								<h2>Get in Touch</h2>
 								<p>Have questions about finance, law, or business compliance? We're here to help!</p>
 								<ul>
-									<li style="color: white;"><i class="icofont-phone"></i> +91-XXXXXXXXXX</li>
-									<li style="color: white;"><i class="icofont-email"></i> info@yourfirm.com</li>
-									<li style="color: white;"><i class="icofont-google-map"></i> Your Office Address, City, State</li>
+									<li style="color: white;"><i class="icofont-phone"></i> +91-8800462057</li>
+									<li style="color: white;"><i class="icofont-email"></i> consultingfintrix@gmail.com</li>
+									<li style="color: white;"><i class="icofont-google-map"></i> 3/170, 3rd Floor, Gali Ganga Ram, Teliwara, Sahadara, Delhi, India-110032</li>
 								</ul>
 							</div>
 						</div>
@@ -340,7 +343,7 @@
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-12">
 							<div class="copyright-content">
-								<p>© Copyright 2025 | All Rights Reserved by <a href="https://yourfirm.com">Fintrix Consulting</a></p>
+								<p>© Copyright 2025 | All Rights Reserved by <a href="{% url 'home' %}">Fintrix Consulting</a></p>
 							</div>
 						</div>
 					</div>

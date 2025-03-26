@@ -1,5 +1,6 @@
 {% extends "base.html" %} 
 {% load static %}
+{% load custom_filters %}
 
 {% block content %}
 <!-- Breadcrumbs -->
@@ -33,7 +34,7 @@
                     {% if service.base_price %}
                     <div class="service-price-tag">
                         <span class="service-price-badge">Starting at ₹{{ service.base_price|stringformat:"d" }}</span>
-                        <span class="service-price-discount">₹999 T&C*</span>
+                        <span class="service-price-discount"><span class="service-price-discount">₹{{ service.base_price|multiply:1.4|floatformat:"0" }} T&C*</span></span>
                     </div>
                     {% endif %}
                 </div>

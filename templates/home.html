@@ -308,6 +308,81 @@
 </section>
 <!--/ End Features -->
 
+<!-- Pricing Table -->
+<section class="pricing-table section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <h2>Our Readymade Plans</h2>
+                    <h5>
+                    Fast-Task Your Trademark with Lawyer-Led Service
+                    </h5>
+                    <img src="{% static 'img/section-img.png' %}" alt="#">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Single Table -->
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5 col-md-12 col-12">
+                <div class="single-table">
+                    <!-- Table Head -->
+                    <div class="table-head">
+                        <div class="icon">
+                            <i class="icofont icofont-law-document"></i>
+                        </div>
+                        <h4 class="title">{{ consultation_product.name }}</h4>
+                        <div class="price">
+                            <p class="amount">₹{{ consultation_product.base_price|stringformat:"d" }}</p>
+                        </div>  
+                    </div>
+                    <div class="table-bottom">
+                        <a class="btn" href="{% url 'products' product_id=consultation_product.id %}">Get Started</a>
+                    </div>
+                    <!-- Table List -->
+                    <ul class="table-list">
+                        {% for field in consultation_product.fields.all %}
+                            <li><i class="icofont icofont-ui-check"></i> {{ field.value }}</li>
+                        {% endfor %}
+                    </ul>
+                    
+                </div>
+            </div>
+            <!-- End Single Table-->
+            <div class="col-lg-1"></div>
+            
+            <!-- Single Table -->
+            <div class="col-lg-5 col-md-12 col-12">
+                <div class="single-table">
+                    <!-- Table Head -->
+                    <div class="table-head">
+                        <div class="icon">
+                            <i class="icofont icofont-business-man-alt-1"></i>
+                        </div>
+                        <h4 class="title">{{ registration_product.name }}</h4>
+                        <div class="price">
+                            <p class="amount">₹{{ registration_product.base_price|stringformat:"d" }}<span>+ Govt Fee</span></p>
+                        </div>  
+                    </div>
+                    <div class="table-bottom">
+                        <a class="btn" href="{% url 'products' product_id=registration_product.id %}">Get Started</a>
+                    </div>
+                    <!-- Table List -->
+                    <ul class="table-list">
+                        {% for field in registration_product.fields.all %}
+                            <li><i class="icofont icofont-ui-check"></i> {{ field.value }}</li>
+                        {% endfor %}
+                    </ul>
+                    
+                </div>
+            </div>
+            <!-- End Single Table-->
+        </div>  
+    </div>  
+</section>  
+<!--/ End Pricing Table -->
+
 <!-- Start Fun-facts -->
 <div id="fun-facts" class="fun-facts section overlay">
     <div class="container">
@@ -428,7 +503,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-12">
                 <div class="content">
-                    <h2>Still Confused? Call @ +919876543210</h2>
+                    <h2>Still Confused? Call @ +918800462057</h2>
                     <p>We help businesses with tax filing, GST registration, and financial planning. Get expert guidance today.</p>
                     <div class="button">
                         <a href="#" class="btn">Get Consultation</a>

@@ -1,0 +1,240 @@
+{% extends "base.html" %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+<div class="container">
+    <div class="row mt-3 mb-3">
+        <!-- Left Column - Product Card (always visible) -->
+        <div class="col-lg-7 col-md-12">
+            <div class="spc-product-card">
+                <div class="spc-product-header">
+                    <div class="spc-product-icon">
+                        <i class="icofont icofont-law-document"></i>
+                    </div>
+                    <h3 class="spc-product-title">{{ consultation_product.name }}</h3>
+                </div>
+                
+                <div class="spc-product-price">
+                    ₹{{ consultation_product.base_price|stringformat:"d" }}
+                    <span class="service-price-discount"><span class="service-price-discount">₹{{ consultation_product.base_price|multiply:1.4|floatformat:"0" }} T&C*</span></span>
+                </div>
+                
+                <ul class="spc-feature-list">
+                    {% for field in consultation_product.fields.all %}
+                        <li class="spc-feature-item">
+                            <i class="spc-feature-icon icofont icofont-ui-check"></i>
+                            {{ field.value }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Right Column - Changes based on order state -->
+        <div class="col-lg-5 col-md-12">
+            {% if not order %}
+            <!-- Initial Checkout Form -->
+            <div class="spc-checkout-form">
+                <h3 class="spc-form-title">Complete Your Booking</h3>
+                <form method="post" action="">
+                    {% csrf_token %}
+                    
+                    <div class="spc-form-group">
+                        <label class="spc-form-label" for="customer_name">Full Name</label>
+                        <input type="text" class="spc-form-input" id="customer_name" name="customer_name" required>
+                    </div>
+                    
+                    <div class="spc-form-group">
+                        <label class="spc-form-label" for="customer_email">Email Address</label>
+                        <input type="email" class="spc-form-input" id="customer_email" name="customer_email" required>
+                    </div>
+                    
+                    <div class="spc-form-group">
+                        <label class="spc-form-label" for="customer_phone">Phone Number</label>
+                        <input type="tel" class="spc-form-input" id="customer_phone" name="customer_phone">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Proceed to Payment</button>
+                </form>
+            </div>
+            {% else %}
+            <!-- Payment Section (shown after form submission) -->
+            <div class="spc-checkout-form">
+                <h3 class="spc-form-title">Complete Payment</h3>
+                <div class="spc-order-summary">
+                    <h4>Order Summary</h4>
+                    <p><strong>Order Number:</strong> {{ order.order_number }}</p>
+                    <p><strong>Service:</strong> {{ order.product.name }}</p>
+                    <p><strong>Amount:</strong> ₹{{ order.final_price }}</p>
+                </div>
+                
+                <div class="spc-payment-actions">
+                    <button id="rzp-button" class="btn btn-primary">Pay Now with Razorpay</button>
+                    <p class="spc-payment-note">You'll be redirected to Razorpay's secure payment page</p>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% if order %}
+<!-- Razorpay Integration (only loaded when needed) -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    var options = {
+        "key": "{{ razorpay_key_id }}",
+        "amount": "{{ amount|multiply:100|floatformat:'0' }}",
+        "currency": "INR",
+        "name": "Your Company Name",
+        "description": "Payment for {{ order.product.name }}",
+        "image": "{% static 'path/to/your/logo.png' %}",
+        "order_id": "{{ razorpay_order_id }}",
+        "handler": function (response) {
+            window.location.href = "{{ callback_url }}?razorpay_payment_id=" + 
+                                 response.razorpay_payment_id + 
+                                 "&razorpay_order_id=" + response.razorpay_order_id + 
+                                 "&razorpay_signature=" + response.razorpay_signature;
+        },
+        "prefill": {
+            "name": "{{ customer_name }}",
+            "email": "{{ customer_email }}",
+            "contact": "{{ customer_phone|default:'' }}"
+        },
+        "theme": {
+            "color": "#1a76d1"  /* Matching your brand color */
+        }
+    };
+    
+    var rzp = new Razorpay(options);
+    
+    document.getElementById('rzp-button').onclick = function(e) {
+        rzp.open();
+        e.preventDefault();
+    }
+    
+    // Optional: Auto-open the Razorpay modal
+    window.onload = function() {
+        document.getElementById('rzp-button').click();
+    }
+</script>
+{% endif %}
+
+<style>
+    /* Your existing styles remain unchanged */
+    .service-price-discount {
+        color: #e74c3c;
+        text-decoration: line-through;
+        font-size: 14px;
+    }
+    .spc-product-card {
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        padding: 2rem;
+        margin-bottom: 2rem;
+    }
+    
+    .spc-product-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+    
+    .spc-product-icon {
+        font-size: 2rem;
+        color: #1a76d1;
+        margin-right: 1rem;
+    }
+    
+    .spc-product-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin: 0;
+    }
+    
+    .spc-product-price {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #1a76d1;
+        margin: 1rem 0;
+    }
+    
+    .spc-feature-list {
+        list-style: none;
+        padding: 0;
+        margin: 1.5rem 0;
+    }
+    
+    .spc-feature-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.8rem;
+    }
+    
+    .spc-feature-icon {
+        color: #4CAF50;
+        margin-right: 0.8rem;
+    }
+    
+    .spc-checkout-form {
+        background: #f9fafb;
+        border-radius: 8px;
+        padding: 2rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    
+    .spc-form-title {
+        font-size: 1.3rem;
+        margin-bottom: 1.5rem;
+        color: #333;
+    }
+    
+    .spc-form-group {
+        margin-bottom: 1.5rem;
+    }
+    
+    .spc-form-label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+    }
+    
+    .spc-form-input {
+        width: 100%;
+        padding: 0.8rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 1rem;
+    }
+    
+    /* New styles for payment section */
+    .spc-order-summary {
+        background: #fff;
+        padding: 1.5rem;
+        border-radius: 6px;
+        margin-bottom: 1.5rem;
+        border: 1px solid #eee;
+    }
+    
+    .spc-order-summary h4 {
+        margin-top: 0;
+        color: #1a76d1;
+    }
+    
+    .spc-order-summary p {
+        margin: 0.5rem 0;
+    }
+    
+    .spc-payment-actions {
+        text-align: center;
+    }
+    
+    .spc-payment-note {
+        font-size: 0.9rem;
+        color: #666;
+        margin-top: 1rem;
+    }
+</style>
+{% endblock %}
